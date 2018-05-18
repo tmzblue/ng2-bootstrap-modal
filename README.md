@@ -1,3 +1,5 @@
+### Forked from https://github.com/ankosoftware/ng2-bootstrap-modal, this package contains fixes for angular 5 and rxjs imports. 
+
 #Angular2 Bootstrap Modal Service
 
 It is a library to make usage of bootstrap modal plugin easier in Angular2. 
