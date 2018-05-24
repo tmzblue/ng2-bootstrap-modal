@@ -42,7 +42,7 @@ export class DialogHolderComponent {
     let factory = this.resolver.resolveComponentFactory(DialogWrapperComponent);
     let componentRef = this.element.createComponent(factory, options.index);
     let dialogWrapper: DialogWrapperComponent = <DialogWrapperComponent> componentRef.instance;
-    let _component: DialogComponent<T,T1> =  dialogWrapper.addComponent(component);
+    let _component: DialogComponent<T,T1> =  dialogWrapper.addComponent(component, options.customFactory);
     if(typeof(options.index) !== 'undefined') {
       this.dialogs.splice(options.index, 0, _component);
     }

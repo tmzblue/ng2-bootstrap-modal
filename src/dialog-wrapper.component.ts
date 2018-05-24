@@ -1,5 +1,5 @@
 import {
-  Component, ViewContainerRef, ViewChild, ComponentFactoryResolver, ReflectiveInjector, Type
+  Component, ViewContainerRef, ViewChild, ComponentFactoryResolver, ReflectiveInjector, Type, ComponentFactory
 } from '@angular/core';
 import {DialogComponent} from "./dialog.component";
 import {DialogService} from "./dialog.service";
@@ -42,8 +42,8 @@ export class DialogWrapperComponent {
    * @param {Type<DialogComponent>} component
    * @return {DialogComponent}
    */
-  addComponent<T, T1>(component: Type<DialogComponent<T, T1>>) {
-    let factory = this.resolver.resolveComponentFactory(component);
+  addComponent<T, T1>(component: Type<DialogComponent<T, T1>>, customFactory?: ComponentFactory<{}>) {
+    let factory = customFactory || this.resolver.resolveComponentFactory(component);
     let injector = ReflectiveInjector.fromResolvedProviders([], this.element.injector);
     let componentRef = factory.create(injector);
     this.element.insert(componentRef.hostView);

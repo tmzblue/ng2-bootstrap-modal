@@ -78,12 +78,12 @@ export class DialogService {
    * Creates and add to DOM dialog holder component
    * @return {DialogHolderComponent}
    */
-  private createDialogHolder(customComponentFactoryResolver?:ComponentFactory<{}>): DialogHolderComponent {
+  private createDialogHolder(customFactory?:ComponentFactory<{}>): DialogHolderComponent {
 
     let componentFactory:any = null;
 
-    if(customComponentFactoryResolver){
-      componentFactory = customComponentFactoryResolver;
+    if(customFactory){
+      componentFactory = customFactory;
     } else {
       componentFactory = this.resolver.resolveComponentFactory(DialogHolderComponent);
     }
