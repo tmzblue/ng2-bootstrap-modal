@@ -15,8 +15,8 @@ var DialogWrapperComponent = (function () {
         this.resolver = resolver;
         this.dialogService = dialogService;
     }
-    DialogWrapperComponent.prototype.addComponent = function (component) {
-        var factory = this.resolver.resolveComponentFactory(component);
+    DialogWrapperComponent.prototype.addComponent = function (component, customFactory) {
+        var factory = customFactory || this.resolver.resolveComponentFactory(component);
         var injector = core_1.ReflectiveInjector.fromResolvedProviders([], this.element.injector);
         var componentRef = factory.create(injector);
         this.element.insert(componentRef.hostView);

@@ -21,7 +21,7 @@ var DialogHolderComponent = (function () {
         var factory = this.resolver.resolveComponentFactory(dialog_wrapper_component_1.DialogWrapperComponent);
         var componentRef = this.element.createComponent(factory, options.index);
         var dialogWrapper = componentRef.instance;
-        var _component = dialogWrapper.addComponent(component);
+        var _component = dialogWrapper.addComponent(component, options.customFactory);
         if (typeof (options.index) !== 'undefined') {
             this.dialogs.splice(options.index, 0, _component);
         }

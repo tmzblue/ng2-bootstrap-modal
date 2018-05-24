@@ -42,11 +42,11 @@ var DialogService = (function () {
     DialogService.prototype.removeAll = function () {
         this.dialogHolderComponent.clear();
     };
-    DialogService.prototype.createDialogHolder = function (customComponentFactoryResolver) {
+    DialogService.prototype.createDialogHolder = function (customFactory) {
         var _this = this;
         var componentFactory = null;
-        if (customComponentFactoryResolver) {
-            componentFactory = customComponentFactoryResolver;
+        if (customFactory) {
+            componentFactory = customFactory;
         }
         else {
             componentFactory = this.resolver.resolveComponentFactory(dialog_holder_component_1.DialogHolderComponent);

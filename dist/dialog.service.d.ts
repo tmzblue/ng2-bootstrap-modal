@@ -21,5 +21,5 @@ export declare class DialogService {
     addDialog<T, T1>(component: Type<DialogComponent<T, T1>>, data?: T, options?: DialogOptions): Observable<T1>;
     removeDialog(component: DialogComponent<any, any>): void;
     removeAll(): void;
-    private createDialogHolder(customComponentFactoryResolver?);
+    private createDialogHolder(customFactory?);
 }
