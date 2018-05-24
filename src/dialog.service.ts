@@ -10,6 +10,7 @@ export interface DialogOptions {
   autoCloseTimeout?: number;
   closeByClickingOutside?: boolean;
   backdropColor?: string;
+  customComponentFactoryResolver?: ComponentFactoryResolver
 }
 
 export class DialogServiceConfig {
@@ -50,7 +51,7 @@ export class DialogService {
    */
   addDialog<T, T1>(component:Type<DialogComponent<T, T1>>, data?:T, options?:DialogOptions): Observable<T1> {
     if(!this.dialogHolderComponent) {
-      this.dialogHolderComponent = this.createDialogHolder();
+      this.dialogHolderComponent = this.createDialogHolder(options ? options.customComponentFactoryResolver : null);
     }
     return this.dialogHolderComponent.addDialog<T, T1>(component, data, options);
   }
@@ -77,9 +78,15 @@ export class DialogService {
    * Creates and add to DOM dialog holder component
    * @return {DialogHolderComponent}
    */
-  private createDialogHolder(): DialogHolderComponent {
+  private createDialogHolder(customComponentFactoryResolver?:ComponentFactoryResolver): DialogHolderComponent {
 
-    let componentFactory = this.resolver.resolveComponentFactory(DialogHolderComponent);
+    let componentFactory:any = null;
+
+    if(customComponentFactoryResolver){
+      componentFactory = customComponentFactoryResolver.resolveComponentFactory(DialogHolderComponent);
+    } else {
+      componentFactory = this.resolver.resolveComponentFactory(DialogHolderComponent);
+    }
 
     let componentRef = componentFactory.create(this.injector);
     let componentRootNode = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
