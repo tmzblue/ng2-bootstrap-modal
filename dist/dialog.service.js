@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_holder_component_1 = require("./dialog-holder.component");
 var DialogServiceConfig = (function () {
@@ -30,7 +29,7 @@ var DialogService = (function () {
     }
     DialogService.prototype.addDialog = function (component, data, options) {
         if (!this.dialogHolderComponent) {
-            this.dialogHolderComponent = this.createDialogHolder();
+            this.dialogHolderComponent = this.createDialogHolder(options ? options.customComponentFactoryResolver : null);
         }
         return this.dialogHolderComponent.addDialog(component, data, options);
     };
@@ -43,9 +42,15 @@ var DialogService = (function () {
     DialogService.prototype.removeAll = function () {
         this.dialogHolderComponent.clear();
     };
-    DialogService.prototype.createDialogHolder = function () {
+    DialogService.prototype.createDialogHolder = function (customComponentFactoryResolver) {
         var _this = this;
-        var componentFactory = this.resolver.resolveComponentFactory(dialog_holder_component_1.DialogHolderComponent);
+        var componentFactory = null;
+        if (customComponentFactoryResolver) {
+            componentFactory = customComponentFactoryResolver.resolveComponentFactory(dialog_holder_component_1.DialogHolderComponent);
+        }
+        else {
+            componentFactory = this.resolver.resolveComponentFactory(dialog_holder_component_1.DialogHolderComponent);
+        }
         var componentRef = componentFactory.create(this.injector);
         var componentRootNode = componentRef.hostView.rootNodes[0];
         if (!this.container) {
@@ -61,8 +66,8 @@ var DialogService = (function () {
     };
     DialogService = __decorate([
         core_1.Injectable(),
-        __param(3, core_1.Optional()),
-        __metadata("design:paramtypes", [core_1.ComponentFactoryResolver, core_1.ApplicationRef, core_1.Injector, DialogServiceConfig])
+        __param(3, core_1.Optional()), 
+        __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, core_1.Injector, DialogServiceConfig])
     ], DialogService);
     return DialogService;
 }());

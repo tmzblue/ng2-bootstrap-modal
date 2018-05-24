@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_wrapper_component_1 = require("./dialog-wrapper.component");
 var DialogHolderComponent = (function () {
@@ -67,15 +66,15 @@ var DialogHolderComponent = (function () {
         this.dialogs = [];
     };
     __decorate([
-        core_1.ViewChild('element', { read: core_1.ViewContainerRef }),
-        __metadata("design:type", core_1.ViewContainerRef)
+        core_1.ViewChild('element', { read: core_1.ViewContainerRef }), 
+        __metadata('design:type', core_1.ViewContainerRef)
     ], DialogHolderComponent.prototype, "element", void 0);
     DialogHolderComponent = __decorate([
         core_1.Component({
             selector: 'dialog-holder',
             template: '<template #element></template>',
-        }),
-        __metadata("design:paramtypes", [core_1.ComponentFactoryResolver])
+        }), 
+        __metadata('design:paramtypes', [core_1.ComponentFactoryResolver])
     ], DialogHolderComponent);
     return DialogHolderComponent;
 }());
