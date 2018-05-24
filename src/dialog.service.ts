@@ -1,5 +1,5 @@
 import {
-  Injectable, ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef, Type, Optional
+  Injectable, ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef, Type, Optional, ComponentFactory
 } from "@angular/core";
 import { DialogHolderComponent } from "./dialog-holder.component";
 import { DialogComponent } from "./dialog.component";
@@ -10,7 +10,7 @@ export interface DialogOptions {
   autoCloseTimeout?: number;
   closeByClickingOutside?: boolean;
   backdropColor?: string;
-  customComponentFactoryResolver?: ComponentFactoryResolver
+  customFactory?: ComponentFactory<{}>
 }
 
 export class DialogServiceConfig {
@@ -51,7 +51,7 @@ export class DialogService {
    */
   addDialog<T, T1>(component:Type<DialogComponent<T, T1>>, data?:T, options?:DialogOptions): Observable<T1> {
     if(!this.dialogHolderComponent) {
-      this.dialogHolderComponent = this.createDialogHolder(options ? options.customComponentFactoryResolver : null);
+      this.dialogHolderComponent = this.createDialogHolder(options ? options.customFactory : null);
     }
     return this.dialogHolderComponent.addDialog<T, T1>(component, data, options);
   }
@@ -78,12 +78,12 @@ export class DialogService {
    * Creates and add to DOM dialog holder component
    * @return {DialogHolderComponent}
    */
-  private createDialogHolder(customComponentFactoryResolver?:ComponentFactoryResolver): DialogHolderComponent {
+  private createDialogHolder(customComponentFactoryResolver?:ComponentFactory<{}>): DialogHolderComponent {
 
     let componentFactory:any = null;
 
     if(customComponentFactoryResolver){
-      componentFactory = customComponentFactoryResolver.resolveComponentFactory(DialogHolderComponent);
+      componentFactory = customComponentFactoryResolver;
     } else {
       componentFactory = this.resolver.resolveComponentFactory(DialogHolderComponent);
     }

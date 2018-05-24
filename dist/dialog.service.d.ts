@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, ApplicationRef, Injector, Type } from "@angular/core";
+import { ComponentFactoryResolver, ApplicationRef, Injector, Type, ComponentFactory } from "@angular/core";
 import { DialogComponent } from "./dialog.component";
 import { Observable } from "rxjs/Observable";
 export interface DialogOptions {
@@ -6,7 +6,7 @@ export interface DialogOptions {
     autoCloseTimeout?: number;
     closeByClickingOutside?: boolean;
     backdropColor?: string;
-    customComponentFactoryResolver?: ComponentFactoryResolver;
+    customFactory?: ComponentFactory<{}>;
 }
 export declare class DialogServiceConfig {
     container: HTMLElement;

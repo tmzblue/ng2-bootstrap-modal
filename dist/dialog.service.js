@@ -29,7 +29,7 @@ var DialogService = (function () {
     }
     DialogService.prototype.addDialog = function (component, data, options) {
         if (!this.dialogHolderComponent) {
-            this.dialogHolderComponent = this.createDialogHolder(options ? options.customComponentFactoryResolver : null);
+            this.dialogHolderComponent = this.createDialogHolder(options ? options.customFactory : null);
         }
         return this.dialogHolderComponent.addDialog(component, data, options);
     };
@@ -46,7 +46,7 @@ var DialogService = (function () {
         var _this = this;
         var componentFactory = null;
         if (customComponentFactoryResolver) {
-            componentFactory = customComponentFactoryResolver.resolveComponentFactory(dialog_holder_component_1.DialogHolderComponent);
+            componentFactory = customComponentFactoryResolver;
         }
         else {
             componentFactory = this.resolver.resolveComponentFactory(dialog_holder_component_1.DialogHolderComponent);
