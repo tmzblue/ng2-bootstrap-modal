@@ -8,7 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
 var dialog_service_1 = require("./dialog.service");
 var DialogWrapperComponent = (function () {
     function DialogWrapperComponent(resolver, dialogService) {
@@ -35,19 +36,19 @@ var DialogWrapperComponent = (function () {
         }, false);
     };
     __decorate([
-        core_1.ViewChild('element', { read: core_1.ViewContainerRef }), 
-        __metadata('design:type', core_1.ViewContainerRef)
+        core_1.ViewChild('element', { read: core_1.ViewContainerRef }),
+        __metadata("design:type", core_1.ViewContainerRef)
     ], DialogWrapperComponent.prototype, "element", void 0);
     __decorate([
-        core_1.ViewChild('container'), 
-        __metadata('design:type', Object)
+        core_1.ViewChild('container'),
+        __metadata("design:type", Object)
     ], DialogWrapperComponent.prototype, "container", void 0);
     DialogWrapperComponent = __decorate([
         core_1.Component({
             selector: 'dialog-wrapper',
             template: "\n    <div #container class=\"modal fade\" style=\"display:block !important;\" role=\"dialog\">\n        <template #element></template>\n    </div>\n"
-        }), 
-        __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, dialog_service_1.DialogService])
+        }),
+        __metadata("design:paramtypes", [core_1.ComponentFactoryResolver, dialog_service_1.DialogService])
     ], DialogWrapperComponent);
     return DialogWrapperComponent;
 }());

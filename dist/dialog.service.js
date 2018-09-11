@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dialog_holder_component_1 = require("./dialog-holder.component");
 var DialogServiceConfig = (function () {
@@ -41,6 +42,12 @@ var DialogService = (function () {
     };
     DialogService.prototype.removeAll = function () {
         this.dialogHolderComponent.clear();
+        setTimeout(function () {
+            var body = document.querySelector("body");
+            if (body && body.classList) {
+                body.classList.remove("modal-open");
+            }
+        }, 1);
     };
     DialogService.prototype.createDialogHolder = function (customFactory) {
         var _this = this;
@@ -66,8 +73,8 @@ var DialogService = (function () {
     };
     DialogService = __decorate([
         core_1.Injectable(),
-        __param(3, core_1.Optional()), 
-        __metadata('design:paramtypes', [core_1.ComponentFactoryResolver, core_1.ApplicationRef, core_1.Injector, DialogServiceConfig])
+        __param(3, core_1.Optional()),
+        __metadata("design:paramtypes", [core_1.ComponentFactoryResolver, core_1.ApplicationRef, core_1.Injector, DialogServiceConfig])
     ], DialogService);
     return DialogService;
 }());
