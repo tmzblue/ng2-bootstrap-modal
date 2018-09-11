@@ -72,6 +72,12 @@ export class DialogService {
    */
   removeAll(): void {
     this.dialogHolderComponent.clear();
+    setTimeout(() => {
+      var body = document.querySelector("body");
+      if(body && body.classList){
+        body.classList.remove("modal-open");
+      }
+    }, 1);
   }
 
   /**
